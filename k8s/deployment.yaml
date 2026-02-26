@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loan-model
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: loan-model
+  template:
+    metadata:
+      labels:
+        app: loan-model
+    spec:
+      containers:
+      - name: loan-model
+        image: 610701051927.dkr.ecr.us-east-1.amazonaws.com/loan-model:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
